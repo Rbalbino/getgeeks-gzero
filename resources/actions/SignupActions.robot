@@ -24,24 +24,3 @@ User Should Be Registered
     
     Wait For Elements State      ${expect_message}       visible     5
 
-Alert Span Should Be
-    [Arguments]     ${expected_notice}
-
-    Wait For Elements State     css=span[class=error] >> text=${expected_notice}
-    ...                         visible     5
-
-Alert Spans Should Be 
-    [Arguments]     ${expected_alersts}
-
-    @{got_alerts}   Create List      
-
-    ${spans}        Get Elements    xpath=//span[@class="error"]
-
-    FOR     ${span}     IN      @{spans}
-
-    ${text}             Get text            ${span}
-    Append To List      ${got_alerts}       ${text}
-
-    END
-
-    Lists Should Be Equal       ${expected_alersts}     ${got_alerts} 
