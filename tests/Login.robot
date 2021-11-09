@@ -49,7 +49,7 @@ Incorrect Email
 Mandatory Email
     [Tags]      m_f
 
-    ${user}     Create Dictionary   email=     password=pwd123
+    ${user}     Create Dictionary   email= ${EMPTY}    password=pwd123
 
     Go To Login Page
     Fill Credentials   ${user}
@@ -59,7 +59,7 @@ Mandatory Email
 Mandatory Password
     [Tags]      m_f
 
-    ${user}     Create Dictionary   email=rafael@msn.com     password=
+    ${user}     Create Dictionary   email=rafael@msn.com     password=${EMPTY}
 
     Go To Login Page
     Fill Credentials   ${user}
