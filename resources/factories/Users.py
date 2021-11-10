@@ -27,12 +27,25 @@ def factory_wrong_email():
         'password': 'pwd123'
     }
 
-
-
 def factory_user_login():
     return {
         'name': 'Rafael',
         'lastname': 'Balbino',
         'email': 'rafael@msn.com',
         'password': 'pwd123'
+    }
+
+def factory_user_be_geek():
+    return{
+        'name': 'Kim',
+        'lastname':  'Dotcom',
+        'email': 'kim@dot.com',
+        'password': 'pwd123',
+        'geek_profile':{
+            'whats': '11999999999',
+            'desc': 'Seu computador está lento? Reiniciando do nada? Posso fazer a manutenção no seu PC, formatando, reinstalando o Sistema Operacional, trocando algum componente físico e porque não remover o baidú ou qualquer outro malware.',
+            'printer_repair': 'Sim',
+            'work': 'Remoto',
+            'cost': '100'
+        }
     }
