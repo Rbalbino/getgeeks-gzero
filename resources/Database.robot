@@ -39,3 +39,6 @@ Users Seed
 
     ${user4}     Factory User       long_desc
     Insert User  ${user4}
+
+    ${user5}     Factory User       field_alert
+    Insert User  ${user5}

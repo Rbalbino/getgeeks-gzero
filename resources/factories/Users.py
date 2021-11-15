@@ -71,7 +71,15 @@ def factory_user(target):
                 'work': 'Remoto',
                 'cost': '150'
             }
-        } 
+        },
+
+        'field_alert':{
+            'name': 'Tony',
+            'lastname': 'Stark',
+            'email': 'tony@starkind.com',
+            'password': 'pwd123',
+        }  
+
     }
 
     return data[target]

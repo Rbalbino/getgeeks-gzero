@@ -27,3 +27,8 @@ Geek Form Should Be Success
 
     Wait For Elements State         css=p >> text=${expected_message}   visible     5
 
+Back to Page
+    Click        img[alt="Voltar"]
+
+Exit Page
+    Click        img[alt="Sair"]
