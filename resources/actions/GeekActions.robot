@@ -2,7 +2,7 @@
 Documentation       Geek Actions
 
 *Keywords*
-Go to Geek From
+Go to Geek Form
     Click       css=a[href="/be-geek"] >> text=Seja um Geek
 
     Wait For Elements State         css=.be-geek-form   visible     5
