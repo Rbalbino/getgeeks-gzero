@@ -31,7 +31,7 @@ Duplicate user
 Wrong Email
     [Tags]          attempt_signup
 
-    ${user}         Factory User        wrong_email
+    ${user}         Factory User         wrong_email
 
     Go To Signup Form
     Fill Signup Form  ${user}
