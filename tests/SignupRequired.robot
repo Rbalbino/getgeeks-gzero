@@ -11,7 +11,7 @@ Name is required
     Alert Span Should Be  Cadê o seu nome?
 
 Lastname is required
-    Alert Span Should Be  Cadê o sobrenome?
+    Alert Span Should Be  E o sobrenome?
 
 Email is required
     Alert Span Should Be   O email é importante também!
