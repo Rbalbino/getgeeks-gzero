@@ -4,6 +4,7 @@ Documentation           Base Test
 Library     Browser
 Library     Collections
 Library     factories/Users.py
+Library     Utils.py
 
 Resource    actions/_SharedActions.robot
 Resource    actions/AuthActions.robot
@@ -22,5 +23,6 @@ Start Session
     New Page                ${BASE_URL}
     Set Viewport Size       1280    768
 
-Finish Session
-    Take Screenshot     fullPage=True
+After Test
+    ${shot_name}        Screenshot Name
+    Take Screenshot     fullPage=True       filename=${shot_name}
