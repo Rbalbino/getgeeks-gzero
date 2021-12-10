@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.2 (Python 3.10.0 on win32)" generated="20211209 21:57:32.587" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1.2 (Python 3.10.0 on win32)" generated="20211209 22:51:26.329" rpa="false" schemaversion="2">
 <suite id="s1" name="Sessions" source="C:\GravidadeZERO\getgeeks\project\backend\users\tests\Sessions.robot">
 <test id="s1-t1" name="User session">
-<kw name="Create Dictionary" library="BuiltIn">
+<kw name="Factory User Session" library="Users">
 <var>${payload}</var>
-<arg>email=kate@msn.com</arg>
-<arg>password=pwd123</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20211209 21:57:32.689" level="INFO">${payload} = {'email': 'kate@msn.com', 'password': 'pwd123'}</msg>
-<status status="PASS" starttime="20211209 21:57:32.688" endtime="20211209 21:57:32.689"/>
+<arg>signup</arg>
+<msg timestamp="20211209 22:51:26.413" level="INFO">${payload} = {'name': 'Kate Bishop', 'email': 'kate@hotmail.com', 'password': 'pwd123'}</msg>
+<status status="PASS" starttime="20211209 22:51:26.413" endtime="20211209 22:51:26.414"/>
+</kw>
+<kw name="POST User" library="UsersRoute">
+<arg>${payload}</arg>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_USERS}/users</arg>
+<arg>json=${payload}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20211209 22:51:28.514" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '74', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Kate Bishop", "email": "kate@hotmail.com", "password": "pwd123"}' 
+ </msg>
+<msg timestamp="20211209 22:51:28.514" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/users 
+ status=201, reason=Created 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '10', 'Etag': 'W/"a-jweWgQfBZxGoGJzlcK3M1SvikBE"', 'Date': 'Fri, 10 Dec 2021 01:51:23 GMT', 'Via': '1.1 vegur'} 
+ body={"id":703} 
+ </msg>
+<msg timestamp="20211209 22:51:28.515" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:26.414" endtime="20211209 22:51:28.515"/>
+</kw>
+<status status="PASS" starttime="20211209 22:51:26.414" endtime="20211209 22:51:28.515"/>
+</kw>
+<kw name="Factory User Session" library="Users">
+<var>${payload}</var>
+<arg>login</arg>
+<msg timestamp="20211209 22:51:28.516" level="INFO">${payload} = {'email': 'kate@hotmail.com', 'password': 'pwd123'}</msg>
+<status status="PASS" starttime="20211209 22:51:28.516" endtime="20211209 22:51:28.516"/>
 </kw>
 <kw name="POST Session" library="SessionsRoute">
 <var>${response}</var>
@@ -19,56 +46,56 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:33.495" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:29.973" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
- headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
- body=b'{"email": "kate@msn.com", "password": "pwd123"}' 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '51', 'Content-Type': 'application/json'} 
+ body=b'{"email": "kate@hotmail.com", "password": "pwd123"}' 
  </msg>
-<msg timestamp="20211209 21:57:33.495" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:29.973" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=200, reason=OK 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '358', 'Etag': 'W/"166-tN2sK9EM1O4j9M8/MBragE/1+1A"', 'Date': 'Fri, 10 Dec 2021 00:57:28 GMT', 'Via': '1.1 vegur'} 
- body={"user":{"id":702,"email":"kate@msn.com","password_hash":"$2b$08$CRByWUrZMd7kREl/0FekKeCLl7mOUEXtDO4fVZ242DRtdZcDAw9Bm","name":"Kate Beshop","avatar":null,"whatsapp":null,"is_geek":false},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzAyLCJpYXQiOjE2MzkwOTc4NDgsImV4cCI6MTYzOTk2MTg0OH0.GvpjqDP8SoF6M8LoS3qUHv6cTgIORTvfhlvDS5nxNas","expires_in":"10d"} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '362', 'Etag': 'W/"16a-KHb7t+xmCH6UguHV/xjc9S8yvmI"', 'Date': 'Fri, 10 Dec 2021 01:51:24 GMT', 'Via': '1.1 vegur'} 
+ body={"user":{"id":703,"email":"kate@hotmail.com","password_hash":"$2b$08$Vz5YaKvXjqLcL5vS.Ol/TOT0CX1rfN2bSxtpoPksSwS.j0AmKDHQm","name":"Kate Bishop","avatar":null,"whatsapp":null,"is_geek":false},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzAzLCJpYXQiOjE2MzkxMDEwODQsImV4cCI6MTYzOTk2NTA4NH0.VAxMVMutiouHKNOflvXJuSt4cV-jPmB0StbnGRYOXfA","expires_in":"10d"} 
  </msg>
-<msg timestamp="20211209 21:57:33.496" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:32.689" endtime="20211209 21:57:33.496"/>
+<msg timestamp="20211209 22:51:29.973" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:28.517" endtime="20211209 22:51:29.973"/>
 </kw>
-<msg timestamp="20211209 21:57:33.496" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:32.689" endtime="20211209 21:57:33.496"/>
+<msg timestamp="20211209 22:51:29.973" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:28.516" endtime="20211209 22:51:29.973"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>200</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:33.497" endtime="20211209 21:57:33.499"/>
+<status status="PASS" starttime="20211209 22:51:29.974" endtime="20211209 22:51:29.974"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${size}</var>
 <arg>${response.json()}[token]</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20211209 21:57:33.500" level="INFO">Length is 140</msg>
-<msg timestamp="20211209 21:57:33.500" level="INFO">${size} = 140</msg>
-<status status="PASS" starttime="20211209 21:57:33.499" endtime="20211209 21:57:33.500"/>
+<msg timestamp="20211209 22:51:29.975" level="INFO">Length is 140</msg>
+<msg timestamp="20211209 22:51:29.975" level="INFO">${size} = 140</msg>
+<status status="PASS" starttime="20211209 22:51:29.975" endtime="20211209 22:51:29.975"/>
 </kw>
 <kw name="Convert To Integer" library="BuiltIn">
 <var>${expected_size}</var>
 <arg>140</arg>
 <doc>Converts the given item to an integer number.</doc>
-<msg timestamp="20211209 21:57:33.502" level="INFO">${expected_size} = 140</msg>
-<status status="PASS" starttime="20211209 21:57:33.501" endtime="20211209 21:57:33.502"/>
+<msg timestamp="20211209 22:51:29.976" level="INFO">${expected_size} = 140</msg>
+<status status="PASS" starttime="20211209 22:51:29.976" endtime="20211209 22:51:29.976"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${expected_size}</arg>
 <arg>${size}</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:33.502" endtime="20211209 21:57:33.503"/>
+<status status="PASS" starttime="20211209 22:51:29.976" endtime="20211209 22:51:29.976"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>10d</arg>
 <arg>${response.json()}[expires_in]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:33.503" endtime="20211209 21:57:33.503"/>
+<status status="PASS" starttime="20211209 22:51:29.976" endtime="20211209 22:51:29.977"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:32.688" endtime="20211209 21:57:33.504"/>
+<status status="PASS" starttime="20211209 22:51:26.413" endtime="20211209 22:51:29.977"/>
 </test>
 <test id="s1-t2" name="Should Not Get Token">
 <kw name="Attempt POST Session">
@@ -84,35 +111,35 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:34.324" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:30.656" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
  body=b'{"email": "kate@msn.com", "password": "abc123"}' 
  </msg>
-<msg timestamp="20211209 21:57:34.324" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:30.656" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=401, reason=Unauthorized 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '24', 'Etag': 'W/"18-XPDV80vbMk4yY1/PADG4jYM4rSI"', 'Date': 'Fri, 10 Dec 2021 00:57:29 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '24', 'Etag': 'W/"18-XPDV80vbMk4yY1/PADG4jYM4rSI"', 'Date': 'Fri, 10 Dec 2021 01:51:25 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Unauthorized"} 
  </msg>
-<msg timestamp="20211209 21:57:34.324" level="INFO">${response} = &lt;Response [401]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:33.505" endtime="20211209 21:57:34.324"/>
+<msg timestamp="20211209 22:51:30.656" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:29.978" endtime="20211209 22:51:30.656"/>
 </kw>
-<msg timestamp="20211209 21:57:34.324" level="INFO">${response} = &lt;Response [401]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:33.505" endtime="20211209 21:57:34.324"/>
+<msg timestamp="20211209 22:51:30.656" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:29.978" endtime="20211209 22:51:30.656"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:34.325" endtime="20211209 21:57:34.325"/>
+<status status="PASS" starttime="20211209 22:51:30.656" endtime="20211209 22:51:30.656"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:34.325" endtime="20211209 21:57:34.325"/>
+<status status="PASS" starttime="20211209 22:51:30.656" endtime="20211209 22:51:30.657"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:33.505" endtime="20211209 21:57:34.325"/>
+<status status="PASS" starttime="20211209 22:51:29.978" endtime="20211209 22:51:30.657"/>
 </kw>
 <kw name="Attempt POST Session">
 <arg>${inv_email}</arg>
@@ -127,35 +154,35 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:35.097" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:31.811" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '46', 'Content-Type': 'application/json'} 
  body=b'{"email": "kate.com.br", "password": "abc123"}' 
  </msg>
-<msg timestamp="20211209 21:57:35.097" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:31.811" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=400, reason=Bad Request 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '27', 'Etag': 'W/"1b-/TOfJuE8lwSWEXvBl7o6iRstTo0"', 'Date': 'Fri, 10 Dec 2021 00:57:30 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '27', 'Etag': 'W/"1b-/TOfJuE8lwSWEXvBl7o6iRstTo0"', 'Date': 'Fri, 10 Dec 2021 01:51:26 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Incorrect email"} 
  </msg>
-<msg timestamp="20211209 21:57:35.097" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:34.326" endtime="20211209 21:57:35.097"/>
+<msg timestamp="20211209 22:51:31.811" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:30.657" endtime="20211209 22:51:31.811"/>
 </kw>
-<msg timestamp="20211209 21:57:35.097" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:34.326" endtime="20211209 21:57:35.097"/>
+<msg timestamp="20211209 22:51:31.811" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:30.657" endtime="20211209 22:51:31.811"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:35.097" endtime="20211209 21:57:35.098"/>
+<status status="PASS" starttime="20211209 22:51:31.811" endtime="20211209 22:51:31.812"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:35.098" endtime="20211209 21:57:35.098"/>
+<status status="PASS" starttime="20211209 22:51:31.812" endtime="20211209 22:51:31.813"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:34.326" endtime="20211209 21:57:35.098"/>
+<status status="PASS" starttime="20211209 22:51:30.657" endtime="20211209 22:51:31.813"/>
 </kw>
 <kw name="Attempt POST Session">
 <arg>${email_404}</arg>
@@ -170,35 +197,35 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:35.860" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:32.538" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
  body=b'{"email": "kate@404.com", "password": "abc123"}' 
  </msg>
-<msg timestamp="20211209 21:57:35.860" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:32.538" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=401, reason=Unauthorized 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '24', 'Etag': 'W/"18-XPDV80vbMk4yY1/PADG4jYM4rSI"', 'Date': 'Fri, 10 Dec 2021 00:57:30 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '24', 'Etag': 'W/"18-XPDV80vbMk4yY1/PADG4jYM4rSI"', 'Date': 'Fri, 10 Dec 2021 01:51:27 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Unauthorized"} 
  </msg>
-<msg timestamp="20211209 21:57:35.860" level="INFO">${response} = &lt;Response [401]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:35.099" endtime="20211209 21:57:35.860"/>
+<msg timestamp="20211209 22:51:32.538" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:31.813" endtime="20211209 22:51:32.538"/>
 </kw>
-<msg timestamp="20211209 21:57:35.860" level="INFO">${response} = &lt;Response [401]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:35.099" endtime="20211209 21:57:35.860"/>
+<msg timestamp="20211209 22:51:32.538" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:31.813" endtime="20211209 22:51:32.538"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:35.860" endtime="20211209 21:57:35.861"/>
+<status status="PASS" starttime="20211209 22:51:32.538" endtime="20211209 22:51:32.539"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:35.861" endtime="20211209 21:57:35.861"/>
+<status status="PASS" starttime="20211209 22:51:32.539" endtime="20211209 22:51:32.539"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:35.099" endtime="20211209 21:57:35.861"/>
+<status status="PASS" starttime="20211209 22:51:31.813" endtime="20211209 22:51:32.539"/>
 </kw>
 <kw name="Attempt POST Session">
 <arg>${empty_email}</arg>
@@ -213,35 +240,35 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:36.681" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:33.260" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '35', 'Content-Type': 'application/json'} 
  body=b'{"email": "", "password": "abc123"}' 
  </msg>
-<msg timestamp="20211209 21:57:36.681" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:33.260" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=400, reason=Bad Request 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '26', 'Etag': 'W/"1a-ztWLEO5pP/4DOQYYgf8vh7rMmRI"', 'Date': 'Fri, 10 Dec 2021 00:57:31 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '26', 'Etag': 'W/"1a-ztWLEO5pP/4DOQYYgf8vh7rMmRI"', 'Date': 'Fri, 10 Dec 2021 01:51:28 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Required email"} 
  </msg>
-<msg timestamp="20211209 21:57:36.681" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:35.863" endtime="20211209 21:57:36.681"/>
+<msg timestamp="20211209 22:51:33.260" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:32.540" endtime="20211209 22:51:33.260"/>
 </kw>
-<msg timestamp="20211209 21:57:36.681" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:35.863" endtime="20211209 21:57:36.681"/>
+<msg timestamp="20211209 22:51:33.261" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:32.540" endtime="20211209 22:51:33.261"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:36.681" endtime="20211209 21:57:36.682"/>
+<status status="PASS" starttime="20211209 22:51:33.261" endtime="20211209 22:51:33.261"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:36.682" endtime="20211209 21:57:36.682"/>
+<status status="PASS" starttime="20211209 22:51:33.261" endtime="20211209 22:51:33.262"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:35.863" endtime="20211209 21:57:36.682"/>
+<status status="PASS" starttime="20211209 22:51:32.540" endtime="20211209 22:51:33.262"/>
 </kw>
 <kw name="Attempt POST Session">
 <arg>${wo_email}</arg>
@@ -256,35 +283,35 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:37.449" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:33.905" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '22', 'Content-Type': 'application/json'} 
  body=b'{"password": "abc123"}' 
  </msg>
-<msg timestamp="20211209 21:57:37.449" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:33.905" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=400, reason=Bad Request 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '26', 'Etag': 'W/"1a-ztWLEO5pP/4DOQYYgf8vh7rMmRI"', 'Date': 'Fri, 10 Dec 2021 00:57:32 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '26', 'Etag': 'W/"1a-ztWLEO5pP/4DOQYYgf8vh7rMmRI"', 'Date': 'Fri, 10 Dec 2021 01:51:28 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Required email"} 
  </msg>
-<msg timestamp="20211209 21:57:37.449" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:36.683" endtime="20211209 21:57:37.449"/>
+<msg timestamp="20211209 22:51:33.905" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:33.263" endtime="20211209 22:51:33.905"/>
 </kw>
-<msg timestamp="20211209 21:57:37.449" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:36.683" endtime="20211209 21:57:37.449"/>
+<msg timestamp="20211209 22:51:33.905" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:33.263" endtime="20211209 22:51:33.906"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:37.449" endtime="20211209 21:57:37.449"/>
+<status status="PASS" starttime="20211209 22:51:33.906" endtime="20211209 22:51:33.906"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:37.449" endtime="20211209 21:57:37.450"/>
+<status status="PASS" starttime="20211209 22:51:33.906" endtime="20211209 22:51:33.906"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:36.683" endtime="20211209 21:57:37.450"/>
+<status status="PASS" starttime="20211209 22:51:33.263" endtime="20211209 22:51:33.907"/>
 </kw>
 <kw name="Attempt POST Session">
 <arg>${empty_pass}</arg>
@@ -299,35 +326,35 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:38.933" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:34.551" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '41', 'Content-Type': 'application/json'} 
  body=b'{"email": "kate@msn.com", "password": ""}' 
  </msg>
-<msg timestamp="20211209 21:57:38.933" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:34.551" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=400, reason=Bad Request 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '25', 'Etag': 'W/"19-XQPKZGB2rC+TLudFQKbwFLPwbR0"', 'Date': 'Fri, 10 Dec 2021 00:57:33 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '25', 'Etag': 'W/"19-XQPKZGB2rC+TLudFQKbwFLPwbR0"', 'Date': 'Fri, 10 Dec 2021 01:51:29 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Required pass"} 
  </msg>
-<msg timestamp="20211209 21:57:38.933" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:37.451" endtime="20211209 21:57:38.933"/>
+<msg timestamp="20211209 22:51:34.551" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:33.908" endtime="20211209 22:51:34.551"/>
 </kw>
-<msg timestamp="20211209 21:57:38.933" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:37.450" endtime="20211209 21:57:38.933"/>
+<msg timestamp="20211209 22:51:34.553" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:33.907" endtime="20211209 22:51:34.553"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:38.933" endtime="20211209 21:57:38.934"/>
+<status status="PASS" starttime="20211209 22:51:34.553" endtime="20211209 22:51:34.553"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:38.934" endtime="20211209 21:57:38.934"/>
+<status status="PASS" starttime="20211209 22:51:34.553" endtime="20211209 22:51:34.553"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:37.450" endtime="20211209 21:57:38.934"/>
+<status status="PASS" starttime="20211209 22:51:33.907" endtime="20211209 22:51:34.554"/>
 </kw>
 <kw name="Attempt POST Session">
 <arg>${wo_pass}</arg>
@@ -342,40 +369,40 @@
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20211209 21:57:39.751" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:35.306" level="INFO">POST Request : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  path_url=/sessions 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '25', 'Content-Type': 'application/json'} 
  body=b'{"email": "kate@msn.com"}' 
  </msg>
-<msg timestamp="20211209 21:57:39.751" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
+<msg timestamp="20211209 22:51:35.306" level="INFO">POST Response : url=https://getgeeks-users-balbino.herokuapp.com/sessions 
  status=400, reason=Bad Request 
- headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '25', 'Etag': 'W/"19-XQPKZGB2rC+TLudFQKbwFLPwbR0"', 'Date': 'Fri, 10 Dec 2021 00:57:34 GMT', 'Via': '1.1 vegur'} 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '25', 'Etag': 'W/"19-XQPKZGB2rC+TLudFQKbwFLPwbR0"', 'Date': 'Fri, 10 Dec 2021 01:51:30 GMT', 'Via': '1.1 vegur'} 
  body={"error":"Required pass"} 
  </msg>
-<msg timestamp="20211209 21:57:39.751" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:38.936" endtime="20211209 21:57:39.751"/>
+<msg timestamp="20211209 22:51:35.306" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:34.555" endtime="20211209 22:51:35.306"/>
 </kw>
-<msg timestamp="20211209 21:57:39.751" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20211209 21:57:38.935" endtime="20211209 21:57:39.751"/>
+<msg timestamp="20211209 22:51:35.306" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20211209 22:51:34.554" endtime="20211209 22:51:35.306"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>${status_code}</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20211209 21:57:39.752" endtime="20211209 21:57:39.752"/>
+<status status="PASS" starttime="20211209 22:51:35.307" endtime="20211209 22:51:35.307"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${error_message}</arg>
 <arg>${response.json()}[error]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20211209 21:57:39.752" endtime="20211209 21:57:39.752"/>
+<status status="PASS" starttime="20211209 22:51:35.307" endtime="20211209 22:51:35.307"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:38.935" endtime="20211209 21:57:39.752"/>
+<status status="PASS" starttime="20211209 22:51:34.554" endtime="20211209 22:51:35.307"/>
 </kw>
-<status status="PASS" starttime="20211209 21:57:33.504" endtime="20211209 21:57:39.753"/>
+<status status="PASS" starttime="20211209 22:51:29.977" endtime="20211209 22:51:35.309"/>
 </test>
 <doc>Session route test suite</doc>
-<status status="PASS" starttime="20211209 21:57:32.589" endtime="20211209 21:57:39.754"/>
+<status status="PASS" starttime="20211209 22:51:26.330" endtime="20211209 22:51:35.309"/>
 </suite>
 <statistics>
 <total>

@@ -15,8 +15,10 @@ Resource        ${EXECDIR}/resources/Base.robot
 
 *Test Cases*
 User session
+    ${payload}      Factory User Session    signup
+    POST User       ${payload} 
 
-    ${payload}      Create Dictionary       email=kate@msn.com        password=pwd123
+    ${payload}      Factory User Session    login
 
     ${response}     POST Session        ${payload}
 
