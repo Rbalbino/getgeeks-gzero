@@ -1,5 +1,15 @@
 
 
+def factory_new_user():
+
+    return {
+        'name': 'Clint Barton',
+        'email': 'barton@shield.com',
+        'password': 'pwd123'
+    }
+
+
+
 def factory_user_session(target):
 
     name = 'Kate Bishop'
