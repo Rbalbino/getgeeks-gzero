@@ -7,7 +7,7 @@ Resource        ${EXECDIR}/resources/Base.robot
 Be a Geek
 
     ${user}     Factory Be Geek
-    Remove User  ${user}
+    Remove User   ${user}
     POST User  ${user}
 
     ${token}        Get Token  ${user}

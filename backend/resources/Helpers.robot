@@ -1,7 +1,6 @@
 *Settings*
 Documentation       Helpers
 
-
 *Keywords*
 Get Token
     [Arguments]     ${user}
