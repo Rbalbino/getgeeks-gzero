@@ -9,7 +9,7 @@ Resource        routes/SessionsRoute.robot
 Resource        routes/UsersRoute.robot
 Resource        routes/GeeksRoute.robot
 
-Resource        helpers.robot
+Resource        Helpers.robot
 
 *Variables*
 ${API_USERS}        https://getgeeks-users-balbino.herokuapp.com
