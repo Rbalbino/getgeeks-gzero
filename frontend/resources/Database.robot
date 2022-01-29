@@ -28,14 +28,10 @@ Insert User
 
 Users Seed
 
-    ${user}     Factory User        login
-    Insert User  ${user}
+    ${users}    Users To Insert DB
 
-    ${user2}     Factory User       be_geek
-    Insert User  ${user2}
+    FOR     ${user}     IN      @{Users}
 
-    ${user3}     Factory User       attempt_be_geek
-    Insert User  ${user3}
+        Insert User  ${user}
 
-    ${user4}     Factory User       field_alert
-    Insert User  ${user4}
+    END
