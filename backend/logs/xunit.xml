@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests" tests="8" errors="0" failures="0" skipped="0" time="28.575">
-<testcase classname="Tests.Geeks" name="Be a Geek" time="4.101">
+<testsuite name="Tests" tests="8" errors="0" failures="0" skipped="0" time="30.715">
+<testcase classname="Tests.Geeks" name="Be a Geek" time="5.110">
 </testcase>
-<testcase classname="Tests.Geeks" name="Get Geek List" time="8.648">
+<testcase classname="Tests.Geeks" name="Get Geek List" time="9.469">
 </testcase>
-<testcase classname="Tests.Sessions" name="User session" time="1.318">
+<testcase classname="Tests.Sessions" name="User session" time="1.386">
 </testcase>
-<testcase classname="Tests.Sessions" name="Should Not Get Token" time="4.993">
+<testcase classname="Tests.Sessions" name="Should Not Get Token" time="4.649">
 </testcase>
-<testcase classname="Tests.Users" name="Add new user" time="2.015">
+<testcase classname="Tests.Users" name="Add new user" time="2.567">
 </testcase>
-<testcase classname="Tests.Users" name="Get User Data" time="2.008">
+<testcase classname="Tests.Users" name="Get User Data" time="2.009">
 </testcase>
-<testcase classname="Tests.Users" name="Remove User" time="2.662">
+<testcase classname="Tests.Users" name="Remove User" time="2.708">
 </testcase>
-<testcase classname="Tests.Users" name="Update a user" time="2.719">
+<testcase classname="Tests.Users" name="Update a user" time="2.702">
 </testcase>
 </testsuite>
