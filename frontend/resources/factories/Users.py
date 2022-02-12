@@ -13,7 +13,10 @@ def users_to_insert_db():
         factory_user('login'),
         factory_user('be_geek'),
         factory_user('attempt_be_geek'),
-        factory_user('field_alert')
+        factory_user('field_alert'),
+        factory_user('search_alien'),
+        factory_user('search_common'),
+        factory_user('searcher')
     ]
 
 
@@ -74,7 +77,39 @@ def factory_user(target):
             'lastname': 'Stark',
             'email': 'tony@starkind.com',
             'password': 'pwd123',
-        }  
+        },
+        'searcher':{
+            'name': 'Jose',
+            'lastname': 'Silva',
+            'email': 'jose@silva.com.br',
+            'password': 'pwd123'
+        },
+        'search_alien': {
+            'name': 'Doctor',
+            'lastname': 'Ocktavius',
+            'email': 'doc.ock@oscorp.com',
+            'password': 'pwd123',
+            'geek_profile':{
+                'whatsapp': '11999999999',
+                'desc': 'Faço conserto de qualquer impressora. Matricial a fita, Matricial a fita colorida, a laser, a jato de tinta e também impressora 3D.',
+                'printer_repair': 'Sim',
+                'work': 'Presencial',
+                'cost': '250'
+            } 
+        },
+        'search_common': {
+            'name': 'Petter',
+            'lastname': 'Parker',
+            'email': 'parker2@oscorp.com',
+            'password': 'pwd123',
+            'geek_profile':{
+                'whatsapp': '11999998888',
+                'desc': 'Faço instalação de distribuções Linux no seu computador PC X86 ou X64 com processadores Intel ou AMD. Pode ser o Linux Debian, Ubuntu, Mint, Fedora etc...',
+                'printer_repair': 'Não',
+                'work': 'Remoto',
+                'cost': '200'
+            } 
+        },
 
     }
 
